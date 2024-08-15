@@ -37,8 +37,8 @@ app.post("/generate-totp", async (req, res) => {
         const secret = url.searchParams.get("secret");
         if (secret) {
           const { otp } = TOTP.generate(secret, {
-            digits: 8,
-            algorithm: "SHA-512",
+            digits: 6,
+            algorithm: "HMAC-SHA1",
             period: 60,
           });
           res.json({ data: otp });
