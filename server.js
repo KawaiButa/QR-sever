@@ -4,6 +4,7 @@ const { createCanvas, loadImage } = require("canvas");
 const jsQR = require("jsqr");
 const fs = require("fs");
 const path = require("path");
+const {TOTP} = require("totp-generator")
 
 const app = express();
 app.use(express.json());
@@ -38,7 +39,7 @@ app.post("/generate-totp", async (req, res) => {
         if (secret) {
           const { otp } = TOTP.generate(secret, {
             digits: 6,
-            algorithm: "HMAC-SHA1",
+            algorithm: "SHA-1",
             period: 60,
           });
           res.json({ data: otp });
