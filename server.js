@@ -40,7 +40,7 @@ app.post("/generate-totp", async (req, res) => {
           const { otp } = TOTP.generate(secret, {
             digits: 6,
             algorithm: "SHA-1",
-            period: 60,
+            period: 30,
           });
           res.json({ data: otp });
         } else {
